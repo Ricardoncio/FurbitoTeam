@@ -10,11 +10,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Carta {
-
+public class Usuario {
     private int id;
-    private String imageLink;
-    // 1 -> bronce; 2 -> plata; 3 -> oro; 4 -> JV; 5 -> especial;
-    private int tier;
-    private String alt;
+    private String nombreUsuario;
+    private String pass;
 }

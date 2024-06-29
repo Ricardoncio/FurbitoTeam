@@ -9,21 +9,33 @@ public class CartaDAO {
 
     public static List<Carta> recuperarCartas() {
         List<Carta> cartasArr = new ArrayList<>();
+        Connection con = null;
 
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FurbitoTeam","root","1234");
-             Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM cartas")) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FurbitoTeam","root","1234");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM cartas");
 
             while (rs.next()) {
                 Carta carta = new Carta();
                 carta.setId(rs.getInt("id"));
                 carta.setImageLink(rs.getString("imageLink"));
                 carta.setTier(rs.getInt("tier"));
+                carta.setAlt(rs.getString("alt"));
                 cartasArr.add(carta);
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         return cartasArr;

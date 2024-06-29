@@ -7,6 +7,7 @@ body {
     background-size: cover;
     background-attachment: fixed;
     text-align: center;
+    overflow-x: hidden;
 }
 header {
     height: 20vh;
@@ -16,11 +17,17 @@ header h1 {
     font-size: 70px;
     margin: 0;
 }
-.contenedorCartas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.my-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
-.carta {
-    width: 520px;
+.my-button:hover {
+    background-color: #45a049;
+}
+.my-button:active {
+    background-color: #3e8e41;
 }
