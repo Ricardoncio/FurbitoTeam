@@ -11,7 +11,8 @@ async function mostrarInventario(){
 function crearCartas(inventory,equipo){
     const inventario = document.getElementById('inventario');
     inventory.forEach(card => {
-        if(equipo && equipo.some(resp=>resp.id!==card.id)){
+        const pos=Object.keys(equipo).find(pos=>equipo[pos].id===card.id)
+        if(equipo && !pos){
             const carta = document.createElement('img');
             carta.id = 'card-'+card.id;
             carta.src = card.imageLink;
@@ -19,6 +20,14 @@ function crearCartas(inventory,equipo){
             carta.draggable = true;
             carta.addEventListener('dragstart', drag);
             inventario.appendChild(carta);
+        }else{
+            const crdInTeam = document.getElementById(pos);
+            crdInTeam.children[0].remove()
+            const carta = document.createElement('img');
+            carta.id = 'card-'+card.id;
+            carta.src = card.imageLink;
+            carta.alt = card.alt;
+            crdInTeam.appendChild(carta)
         }
     });
 }
@@ -33,22 +42,19 @@ function drag(ev) {
     cardId=data.split('-')[1];
 }
   
-function drop(ev) {
+async function drop(ev) {
     event.preventDefault();
     ev.target.remove();
     const draggedElementId = event.dataTransfer.getData('text/plain');
     const dropZone = event.currentTarget;
     const draggedElement = document.getElementById(draggedElementId);
     dropZone.appendChild(draggedElement);
-    actualizarPlantilla(cardId);
+    await actualizarPlantilla(cardId,dropZone.id);
 }
 
-async function actualizarPlantilla(cardId){
+async function actualizarPlantilla(cardId,pos){
     const userId = JSON.parse(sessionStorage.getItem("user")).id;
-    console.log(userId)
-    console.log(cardId)
-    const response= await fetch("http://localhost:8080/FurbitoTeam/cambiarEquipo?idUser="+userId+"&idCarta="+cardId,{method: "PUT"});
-    const plantilla = await response.json();
+    await fetch("http://localhost:8080/FurbitoTeam/cambiarEquipo?idUser="+userId+"&idCarta="+cardId+"&pos="+pos,{method: "PUT"});
 }
 
 async function obtenerPlantilla(){
