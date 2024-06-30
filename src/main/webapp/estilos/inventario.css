@@ -1,0 +1,61 @@
+body {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.campo{
+    position: relative;
+    background-image: url("../recursos/campo-plantilla.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    height: calc(100vh - 300px);
+    width: 1200px;
+    margin: auto;
+}
+
+.delI{    
+    color: white;
+    position: relative
+}
+
+.delD{    
+    color: white;
+    position: relativ
+}
+
+.defI{    
+    color: white;
+    position: relative;
+}
+
+.defD{
+    color: white;
+    position: relativ
+}
+
+.por{
+    color: white;
+    position: relative;
+}
+
+#inventario{
+    position: absolute;
+    bottom: 0;
+    overflow-x: scroll; 
+    width: 100vw;
+    height: 310px;
+    display: flex;
+}
+
+img{
+    height: 300px;
+}

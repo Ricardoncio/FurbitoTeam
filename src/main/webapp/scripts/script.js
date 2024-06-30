@@ -1,13 +1,3 @@
-function redirigir() {
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    if (user != null) {
-        bienvenida();
-    } else {
-        window.location.href = "http://localhost:8080/FurbitoTeam/plantillas/login.html";
-    }
-}
-redirigir();
-
 function bienvenida() {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const mensajeBienvenida = document.getElementById("mensajeBienvenida");
@@ -20,7 +10,6 @@ async function mostrarCarta(){
     const carta = await response.json();
     const divContenedor = document.getElementById("divContenedor");
     const imagenesAnteriores = document.querySelectorAll(".cartaAnimacion");
-    console.log(imagenesAnteriores);
     imagenesAnteriores.forEach(img => {img.classList.remove("cartaAnimacion")});
     const imagenCarta = document.createElement("img");
     imagenCarta.src = carta.imageLink;
