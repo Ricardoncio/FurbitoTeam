@@ -1,9 +1,3 @@
-function bienvenida() {
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    const mensajeBienvenida = document.getElementById("mensajeBienvenida");
-    mensajeBienvenida.innerText = "Bienvenido " + user.nombreUsuario;
-}
-
 async function mostrarCarta(){
     const user = JSON.parse(sessionStorage.getItem("user"));
     const response= await fetch("http://localhost:8080/FurbitoTeam/pedirCarta?idUser="+user.id,{method: "GET"});
