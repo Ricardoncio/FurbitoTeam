@@ -52,3 +52,12 @@ form input {
 .my-button:active {
     background-color: #3e8e41;
 }
+
+input, select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}

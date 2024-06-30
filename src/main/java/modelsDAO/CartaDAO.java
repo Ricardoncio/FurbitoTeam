@@ -30,6 +30,7 @@ public class CartaDAO {
         PreparedStatement ps = con.prepareStatement("INSERT INTO inventario VALUES (?,?)");
         ps.setInt(1,idUsuario);
         ps.setInt(2,carta.getId());
+        ps.executeUpdate();
     }
 
     public static Carta abrirCarta(int idUsuario) {

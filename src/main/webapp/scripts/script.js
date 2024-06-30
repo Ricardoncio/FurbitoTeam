@@ -1,6 +1,6 @@
 function redirigir() {
-    const idUsuario = sessionStorage.getItem("id");
-    if (idUsuario != null) {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (user != null) {
         bienvenida();
     } else {
         window.location.href = "http://localhost:8080/FurbitoTeam/plantillas/login.html";
@@ -9,13 +9,14 @@ function redirigir() {
 redirigir();
 
 function bienvenida() {
-    const nombreUsuario = sessionStorage.getItem("usuario");
+    const user = JSON.parse(sessionStorage.getItem("user"));
     const mensajeBienvenida = document.getElementById("mensajeBienvenida");
-    mensajeBienvenida.innerText = "Bienvenido " + nombreUsuario;
+    mensajeBienvenida.innerText = "Bienvenido " + user.nombreUsuario;
 }
 
 async function mostrarCarta(){
-    const response= await fetch("http://localhost:8080/FurbitoTeam/pedirCarta",{method: "GET"});
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    const response= await fetch("http://localhost:8080/FurbitoTeam/pedirCarta?idUser="+user.id,{method: "GET"});
     const carta = await response.json();
     const divContenedor = document.getElementById("divContenedor");
     const imagenesAnteriores = document.querySelectorAll(".cartaAnimacion");
@@ -27,4 +28,9 @@ async function mostrarCarta(){
     imagenCarta.classList.add("cartaAnimacion");
     document.body.appendChild(divContenedor);
     divContenedor.appendChild(imagenCarta);
+}
+
+function desconectarse(){
+    window.location.href = "http://localhost:8080/FurbitoTeam/plantillas/login.html";
+    sessionStorage.removeItem("user");
 }
