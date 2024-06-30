@@ -19,14 +19,14 @@ public class EquipoDAO {
         try {
             con = new Conector().getMYSQLConnection();
             Statement statement = con.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM equipo AS e INNER JOIN cartas AS c on e.id_carta = c.id WHERE id_usuario = " + idUsuario);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM equipo AS e INNER JOIN poolDeCartas AS p on e.id_carta = p.id_unico WHERE e.id_usuario = " + idUsuario);
             while (resultSet.next()) {
                 Carta carta = new Carta();
                 carta.setId(resultSet.getInt("e.id_carta"));
-                carta.setImageLink(resultSet.getString("c.imageLink"));
-                carta.setTier(resultSet.getInt("tier"));
-                carta.setAlt(resultSet.getString("alt"));
-                switch (resultSet.getString("pos")) {
+                carta.setImageLink(resultSet.getString("p.imageLink"));
+                carta.setTier(resultSet.getInt("p.tier"));
+                carta.setAlt(resultSet.getString("p.alt"));
+                switch (resultSet.getString("e.pos")) {
                     case "por" -> equipo.setPor(carta);
                     case "defd" -> equipo.setDefd(carta);
                     case "defi" -> equipo.setDefi(carta);
