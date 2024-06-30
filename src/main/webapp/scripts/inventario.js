@@ -4,21 +4,22 @@ async function mostrarInventario(){
     const user = JSON.parse(sessionStorage.getItem("user"));
     const response= await fetch("http://localhost:8080/FurbitoTeam/coleccion?idUser="+user.id,{method: "GET"});
     const inventario = await response.json();
-    const equipo = obtenerPlantilla();
-    console.log(equipo)
-    crearCartas(inventario);
+    const equipo = await obtenerPlantilla();
+    crearCartas(inventario,equipo);
 }
 
-function crearCartas(inventory){
+function crearCartas(inventory,equipo){
     const inventario = document.getElementById('inventario');
     inventory.forEach(card => {
-        const carta = document.createElement('img');
-        carta.id = 'card-'+card.id;
-        carta.src = card.imageLink;
-        carta.alt = card.alt;
-        carta.draggable = true;
-        carta.addEventListener('dragstart', drag);
-        inventario.appendChild(carta);
+        if(equipo && equipo.some(resp=>resp.id!==card.id)){
+            const carta = document.createElement('img');
+            carta.id = 'card-'+card.id;
+            carta.src = card.imageLink;
+            carta.alt = card.alt;
+            carta.draggable = true;
+            carta.addEventListener('dragstart', drag);
+            inventario.appendChild(carta);
+        }
     });
 }
 
@@ -52,7 +53,7 @@ async function actualizarPlantilla(cardId){
 
 async function obtenerPlantilla(){
     const userId = JSON.parse(sessionStorage.getItem("user")).id;
-    const response= await fetch("http://localhost:8080/FurbitoTeam/equipo?idUser="+userId,{method: "PUT"});
+    const response= await fetch("http://localhost:8080/FurbitoTeam/equipo?idUser="+userId,{method: "GET"});
     const equipo = await response.json();
     return equipo;
 }

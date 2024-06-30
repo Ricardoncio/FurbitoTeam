@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class EquipoDAO {
 
     public static Equipo recuperarEquipo(int idUsuario) {
-        Equipo equipo = null;
+        Equipo equipo = new Equipo();
         Connection con = null;
 
         try {
