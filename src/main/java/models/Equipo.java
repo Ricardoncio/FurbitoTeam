@@ -15,4 +15,23 @@ public class Equipo {
     private Carta defi;
     private Carta deld;
     private Carta deli;
+
+    public Equipo() {
+        por = null;
+        defd = null;
+        defi = null;
+        deld = null;
+        deli = null;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipo{" +
+                "por=" + por +
+                ", defd=" + defd +
+                ", defi=" + defi +
+                ", deld=" + deld +
+                ", deli=" + deli +
+                '}';
+    }
 }
