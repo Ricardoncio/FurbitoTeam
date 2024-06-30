@@ -43,21 +43,20 @@ public class UsuarioDAO {
 
     public static List<Carta> recuperarColeccion(int idUsuario) {
         List<Carta> coleccion = new ArrayList<>();
-        List<Integer> idCartas = new ArrayList<>();
         Connection con = null;
 
         try {
             con = new Conector().getMYSQLConnection();
             Statement statement = con.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("SELECT  * FROM inventario WHERE id_usuario = " + idUsuario);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM inventario AS i INNER JOIN cartas AS c on i.id_carta = c.id WHERE i.id_usuario = " + idUsuario);
             while (resultSet.next()) {
-                idCartas.add(resultSet.getInt("id_carta"));
-            }
-
-            List<Carta> cartasArr = CartaDAO.recuperarCartas(con);
-            for (Integer i : idCartas) {
-                cartasArr.parallelStream().filter(carta -> carta.getId() == i).forEach(coleccion::add);
+                Carta carta = new Carta();
+                carta.setId(resultSet.getInt("c.id"));
+                carta.setImageLink(resultSet.getString("c.imageLink"));
+                carta.setTier(resultSet.getInt("tier"));
+                carta.setAlt(resultSet.getString("alt"));
+                coleccion.add(carta);
             }
 
         } catch (SQLException e) {

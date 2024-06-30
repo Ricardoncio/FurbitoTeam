@@ -8,6 +8,9 @@ body {
     background-attachment: fixed;
     text-align: center;
     overflow-x: hidden;
+    font-family: "Margarine", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 header {
     height: 20vh;
@@ -32,8 +35,9 @@ form {
     justify-content: center;
     align-items: center;
     gap: 2em;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(43,60,41,0.9);
     border-radius: 25px;
+    color: white;
 }
 form input {
     width: 30%;
