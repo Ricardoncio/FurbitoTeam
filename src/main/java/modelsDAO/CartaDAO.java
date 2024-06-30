@@ -16,7 +16,6 @@ public class CartaDAO {
 
         while (rs.next()) {
             Carta carta = new Carta();
-            carta.setId(rs.getInt("id"));
             carta.setImageLink(rs.getString("imageLink"));
             carta.setTier(rs.getInt("tier"));
             carta.setAlt(rs.getString("alt"));
@@ -27,15 +26,36 @@ public class CartaDAO {
     }
 
     private static void guardarCartaEnColeccion(Connection con, Carta carta, int idUsuario) throws SQLException {
-        PreparedStatement ps = con.prepareStatement("INSERT INTO inventario VALUES (?,?)");
+        Carta nuevaCarta = new Carta();
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM poolDeCartas WHERE tier = ? AND imageLink = ? ORDER BY id_unico DESC LIMIT 1");
+        ps.setInt(1,carta.getTier());
+        ps.setString(2, carta.getImageLink());
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            nuevaCarta.setId(rs.getInt("id_unico"));
+            nuevaCarta.setImageLink(rs.getString("imageLink"));
+            nuevaCarta.setTier(rs.getInt("tier"));
+            nuevaCarta.setAlt(rs.getString("alt"));
+        }
+
+        ps = con.prepareStatement("INSERT INTO inventario VALUES (?,?)");
         ps.setInt(1,idUsuario);
-        ps.setInt(2,carta.getId());
+        ps.setInt(2,nuevaCarta.getId());
+        ps.executeUpdate();
+    }
+
+    public static void guardarCartaEnPool(Connection con, Carta carta) throws SQLException {
+        PreparedStatement ps = con.prepareStatement("INSERT INTO poolDeCartas (imageLink,tier,alt) VALUES (?,?,?)");
+        ps.setString(1,carta.getImageLink());
+        ps.setInt(2,carta.getTier());
+        ps.setString(3,carta.getAlt());
         ps.executeUpdate();
     }
 
     public static Carta abrirCarta(int idUsuario) {
         Carta cartaElegida = null;
         Connection con = null;
+
         try {
             con = new Conector().getMYSQLConnection();
             List<Carta> cartasArr = recuperarCartas(con);
@@ -57,6 +77,7 @@ public class CartaDAO {
             List<Carta> cartasArrPorTier = cartasArr.stream().filter(carta -> carta.getTier() == tier).toList();
             int i = new Random().nextInt(cartasArrPorTier.size());
             cartaElegida = cartasArrPorTier.get(i);
+            guardarCartaEnPool(con, cartaElegida);
             guardarCartaEnColeccion(con, cartaElegida, idUsuario);
 
         } catch (SQLException e) {
