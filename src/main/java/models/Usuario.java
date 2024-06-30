@@ -13,5 +13,4 @@ import lombok.Setter;
 public class Usuario {
     private int id;
     private String nombreUsuario;
-    private String pass;
 }
