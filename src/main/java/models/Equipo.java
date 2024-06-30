@@ -1,12 +1,10 @@
 package models;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 
 public class Equipo {
 
@@ -17,11 +15,11 @@ public class Equipo {
     private Carta deli;
 
     public Equipo() {
-        por = null;
-        defd = null;
-        defi = null;
-        deld = null;
-        deli = null;
+        por = new Carta();
+        defd = new Carta();
+        defi = new Carta();
+        deld = new Carta();
+        deli = new Carta();
     }
 
     @Override
