@@ -8,10 +8,19 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
     <body>
         <h1>Furbito Team</h1>
         <div id="divContenedor">
+            <button id="button">
+                <span id="volumeUp" class="material-symbols-outlined hide">
+                volume_up
+                </span>
+                <span id="volumeOff" class="material-symbols-outlined">
+                volume_off
+                </span>
+            </button>
             <form id="loginForm" action="../login" method="POST">
                 <p>¿Listo para la experiencia más ÉPÌCA del fútbol?</p>
                 <label for="input1">Nombre de usuario:</label>
@@ -21,6 +30,9 @@
                 <input type="submit" class="my-button" value="Login"/>
             </form>
         </div>
+        <audio id="audio">
+            <source src="../recursos/samba.mp3" type="audio/mpeg">
+        </audio>
         <script src="../scripts/login.js"></script>
     </body>
 </html>

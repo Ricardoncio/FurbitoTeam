@@ -2,7 +2,7 @@ function bienvenida() {
     const user = JSON.parse(sessionStorage.getItem("user"));
     const mensajeBienvenida = document.getElementById("mensajeBienvenida");
     if(mensajeBienvenida){
-        mensajeBienvenida.innerText = "Bienvenido " + user.nombreUsuario;
+        mensajeBienvenida.innerText = "¡Bienvenido " + user.nombreUsuario + "!";
     }
 }
 

@@ -46,6 +46,9 @@
 .my-button:active {
     background-color: #3e8e41;
 }
+.desconectar:hover {
+    background-color: #6D0404FF;
+}
 a{
     text-decoration: none;
 }

@@ -1,5 +1,34 @@
+const audio = document.querySelector("audio");
+const button = document.querySelector("#button");
+
+button.addEventListener("click", () => {
+    const volumeUp = document.querySelector("#volumeUp");
+    const volumeOff = document.querySelector("#volumeOff");
+    if (audio.paused) {
+        audio.volume = 0.08;
+        audio.play();
+        volumeUp.classList.toggle("hide");
+        volumeOff.classList.toggle("hide");
+    } else {
+        audio.pause();
+        volumeUp.classList.toggle("hide");
+        volumeOff.classList.toggle("hide");
+    }
+});
+function empezarMusica() {
+    audio.volume = 0.08;
+    button.click();
+}
+
+document.body.addEventListener("click", () => {
+    if (!button.classList.contains("empezado")) {
+        empezarMusica();
+        button.classList.add("empezado");
+    }
+})
+
 function login(){
-        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
         event.preventDefault();
         const formData = new FormData(this);
         const formBody = new URLSearchParams();
