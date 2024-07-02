@@ -50,13 +50,13 @@ public class UsuarioDAO {
             con = new Conector().getMYSQLConnection();
             Statement statement = con.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM inventario AS i INNER JOIN cartas AS c on i.id_carta = c.id WHERE i.id_usuario = " + idUsuario);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM inventario AS i INNER JOIN poolDeCartas AS p on i.id_carta = p.id_unico WHERE i.id_usuario = " + idUsuario);
             while (resultSet.next()) {
                 Carta carta = new Carta();
-                carta.setId(resultSet.getInt("c.id"));
-                carta.setImageLink(resultSet.getString("c.imageLink"));
-                carta.setTier(resultSet.getInt("tier"));
-                carta.setAlt(resultSet.getString("alt"));
+                carta.setId(resultSet.getInt("p.id_unico"));
+                carta.setImageLink(resultSet.getString("p.imageLink"));
+                carta.setTier(resultSet.getInt("p.tier"));
+                carta.setAlt(resultSet.getString("p.alt"));
                 coleccion.add(carta);
             }
 
@@ -73,5 +73,33 @@ public class UsuarioDAO {
         }
 
         return coleccion;
+    }
+
+    public static void sumarTirada(int cantidad, List<Integer> ids) {
+        Connection con = null;
+        String update = "UPDATE usuarios SET tiradas = tiradas + " + cantidad + " WHERE ";
+        for (int i = 0; i < ids.size(); i++) {
+            if (i < ids.size() - 1)
+                update += "id = " + ids.get(i) + " OR ";
+            else
+                update += "id = " + ids.get(i);
+        }
+
+        try {
+            con = new Conector().getMYSQLConnection();
+            PreparedStatement ps = con.prepareStatement(update);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.out);
+                }
+            }
+        }
     }
 }

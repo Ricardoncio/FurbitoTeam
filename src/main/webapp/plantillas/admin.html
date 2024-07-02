@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Panel Admin</title>
+        <link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../estilos/style.css">
+        <link rel="stylesheet" href="../estilos/index.css">
+        <link rel="stylesheet" href="../estilos/admin.css">
+    </head>
+    <body>
+
+        <h1>Furbito Team</h1>
+        <h2>Panel de Admin</h2>
+        <div id="divContenedor">
+            <form action="../admin" method="POST" id="formulario">
+                <div>
+                    <label for="input1">Sumar tiradas:</label>
+                    <input type="number" id="input1" name="nuevasTiradas" min="0"/>
+                </div>
+                <div>
+                    <input type="checkbox" name="pablo" id="input2"/><label for="input2">Pablo</label>
+                    <input type="checkbox" name="daneti" id="input3"/><label for="input3">Daneti</label>
+                    <input type="checkbox" name="talleres" id="input4"/><label for="input4">Talleres</label>
+                    <input type="checkbox" name="pukaso" id="input5"/><label for="input5">Pukaso</label>
+                    <input type="checkbox" name="price" id="input6"/><label for="input6">Price</label>
+                    <input type="checkbox" name="yayo" id="input7"/><label for="input7">Yayo</label>
+                </div>
+                <input class="my-button" type="submit"/>
+            </form>
+        </div>
+    </body>
+</html>
