@@ -11,12 +11,14 @@ import lombok.Setter;
 public class Usuario {
     private int id;
     private String nombreUsuario;
+    private int tiradas;
 
     @Override
     public String toString() {
         return "Usuario{" +
                 "id=" + id +
                 ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", tiradas=" + tiradas +
                 '}';
     }
 }

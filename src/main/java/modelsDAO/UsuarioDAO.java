@@ -16,7 +16,7 @@ public class UsuarioDAO {
         
         try {
             con = new Conector().getMYSQLConnection();
-            PreparedStatement stmt = con.prepareStatement("SELECT id,nombre_usuario FROM usuarios WHERE nombre_usuario = ? AND pass = ?");
+            PreparedStatement stmt = con.prepareStatement("SELECT id,nombre_usuario,tiradas FROM usuarios WHERE nombre_usuario = ? AND pass = ?");
             stmt.setString(1, nombreUsuario);
             stmt.setString(2, pass);
             ResultSet rs = stmt.executeQuery();
@@ -24,6 +24,7 @@ public class UsuarioDAO {
                 usuario = new Usuario();
                 usuario.setId(rs.getInt("id"));
                 usuario.setNombreUsuario(rs.getString("nombre_usuario"));
+                usuario.setTiradas(rs.getInt("tiradas"));
             }
 
         } catch (SQLException e) {

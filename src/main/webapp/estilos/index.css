@@ -1,3 +1,19 @@
+header {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+#barraBotones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+#contadorTiradas {
+    margin: 0;
+    position: relative;
+    right: 150px;
+}
 #divContenedor {
     margin: auto;
     display: flex;

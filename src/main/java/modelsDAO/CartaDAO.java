@@ -52,6 +52,11 @@ public class CartaDAO {
         ps.executeUpdate();
     }
 
+    public static void restarTirada(Connection con, int idUsuario) throws SQLException {
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate("UPDATE usuarios SET tiradas = tiradas - 1 WHERE id = " + idUsuario);
+    }
+
     public static Carta abrirCarta(int idUsuario) {
         Carta cartaElegida = null;
         Connection con = null;
@@ -79,6 +84,8 @@ public class CartaDAO {
             cartaElegida = cartasArrPorTier.get(i);
             guardarCartaEnPool(con, cartaElegida);
             guardarCartaEnColeccion(con, cartaElegida, idUsuario);
+            restarTirada(con, idUsuario);
+
 
         } catch (SQLException e) {
             e.printStackTrace();

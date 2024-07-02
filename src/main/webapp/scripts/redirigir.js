@@ -4,6 +4,10 @@ function bienvenida() {
     if(mensajeBienvenida){
         mensajeBienvenida.innerText = "¡Bienvenido " + user.nombreUsuario + "!";
     }
+    const contadorTiradas = document.getElementById("contadorTiradas");
+    if (contadorTiradas) {
+        contadorTiradas.innerText = "Tiradas: " + user.tiradas;
+    }
 }
 
 function redirigir() {

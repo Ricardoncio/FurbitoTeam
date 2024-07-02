@@ -13,16 +13,16 @@ audio {
 }
 form {
     width: 550px;
-    height: 50vh;
     min-width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1.5em;
+    gap: 15px;
     background-color: rgba(43,60,41,0.9);
     border-radius: 25px;
     color: white;
+    padding: 15px 0;
 }
 form input {
     width: 30%;
