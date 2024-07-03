@@ -33,5 +33,7 @@ public class adminServlet extends HttpServlet {
 
         if (nuevasTiradas > 0 && !ids.isEmpty())
             UsuarioDAO.sumarTirada(nuevasTiradas, ids);
+
+        resp.sendRedirect("./plantillas/admin.html");
     }
 }

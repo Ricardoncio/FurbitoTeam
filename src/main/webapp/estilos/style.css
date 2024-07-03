@@ -20,7 +20,20 @@ header h1 {
     font-size: 70px;
     margin: 0;
 }
-
+.my-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.my-button:hover {
+    background-color: #45a049;
+}
+.my-button:active {
+    background-color: #3e8e41;
+}
 ::-webkit-scrollbar{
     height: 4px;
     width: 4px;

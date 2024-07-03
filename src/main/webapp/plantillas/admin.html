@@ -5,15 +5,16 @@
         <title>Panel Admin</title>
         <link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../estilos/style.css">
-        <link rel="stylesheet" href="../estilos/index.css">
         <link rel="stylesheet" href="../estilos/admin.css">
     </head>
-    <body>
-
+    <body class="columnaCentrado">
         <h1>Furbito Team</h1>
-        <h2>Panel de Admin</h2>
-        <div id="divContenedor">
-            <form action="../admin" method="POST" id="formulario">
+        <div id="divContenedor" class="columnaCentrado">
+            <div id="divSubtitulo">
+                <h2>Panel de Admin</h2>
+                <button class="my-button" id="volverInicio">Volver al inicio</button>
+            </div>
+            <form action="../admin" method="POST" id="formulario" class="columnaCentrado">
                 <div>
                     <label for="input1">Sumar tiradas:</label>
                     <input type="number" id="input1" name="nuevasTiradas" min="0"/>
@@ -29,5 +30,6 @@
                 <input class="my-button" type="submit"/>
             </form>
         </div>
+        <script src="../scripts/redirigir.js"></script>
     </body>
 </html>

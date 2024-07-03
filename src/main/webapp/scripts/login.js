@@ -15,6 +15,7 @@ button.addEventListener("click", () => {
         volumeOff.classList.toggle("hide");
     }
 });
+
 function empezarMusica() {
     audio.volume = 0.08;
     button.click();
@@ -47,7 +48,7 @@ function login(){
 
             if (response.ok) {
                 const data = await response.json();
-                sessionStorage.setItem("user", JSON.stringify(data));
+                sessionStorage.setItem("idUser", data.id);
                 window.location.href = "http://localhost:8080/FurbitoTeam/index.html";
             } else {
                 throw new Error('Network response was not ok ' + response.statusText);
