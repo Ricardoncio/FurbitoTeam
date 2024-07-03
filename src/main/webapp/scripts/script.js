@@ -1,3 +1,14 @@
+function mostrarAdmin() {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    if (user.id == 1 || user.id == 3) {
+        const adminBtn = document.getElementById("adminBtn");
+        adminBtn.classList.remove("hide");
+        const tiradas = document.getElementById("contadorTiradas");
+        tiradas.style.right = "100px";
+    }
+}
+mostrarAdmin();
+
 async function mostrarCarta(){
     const user = JSON.parse(sessionStorage.getItem("user"));
     const contadorTiradas = document.getElementById("contadorTiradas");

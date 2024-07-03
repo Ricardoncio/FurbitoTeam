@@ -1,0 +1,35 @@
+h1 {
+    font-size: 80px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+#divContenedor {
+    display: flex;
+    justify-content: center;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 30vw;
+    height: 50vh;
+    background-color: rgba(43,60,41,0.9);
+    padding: 30px;
+    border-radius: 15px;
+}
+.my-button {
+    width: 150px;
+    padding: 20px 30px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.my-button:hover {
+    background-color: #45a049;
+}
+.my-button:active {
+    background-color: #3e8e41;
+}

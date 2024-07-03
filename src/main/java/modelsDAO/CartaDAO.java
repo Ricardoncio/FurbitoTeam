@@ -67,6 +67,7 @@ public class CartaDAO {
 
             double rng = Math.random() * 100 + 1;
             int tier;
+            // 5 -> especial; 4 -> JV; 3 -> oro; 2 -> plata; 1 -> bronce
             if (rng <= 3)
                 // Aqui deberia ser 5 pero como no hay cartas especiales aun no quiero que me de fallos a la hora de testear
                 tier = 4;
