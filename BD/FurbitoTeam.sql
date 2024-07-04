@@ -11,7 +11,8 @@ create table if not exists cartas(
 );
 
 insert into cartas (imageLink, tier, alt) values 
-("https://i.ibb.co/PNxSLm7/Byronv10.png", 4, "Carta de Pablopri"),
+("https://i.ibb.co/B6v4gjL/Byronv10.png", 3, "Carta de Pablopri"),
+("https://i.ibb.co/swSHVQX/Byron-JVv10.png", 4, "Carta de Pablopri JV"),
 ("https://i.ibb.co/VDVgFns/Danetiv10.png", 3, "Carta de Daneti"),
 ("https://i.ibb.co/W65VkhC/Elyayov10.png", 3, "Carta de Yayo"),
 ("https://i.ibb.co/qkfc7vC/Pukav10.png", 2, "Carta de Puka"),
@@ -79,7 +80,7 @@ insert into rankingVersion (nombre_usuario) values
 ("Pukaso"),
 ("Pricelol"),
 ("Elyayo");
-SELECT * FROM equipo AS e INNER JOIN poolDeCartas AS p on e.id_carta = p.id_unico WHERE e.id_usuario = 2;
+
 
 /*
 select * from usuarios;
