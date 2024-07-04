@@ -13,7 +13,7 @@ import java.io.IOException;
 public class BorrarEquipoServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idUser = 0;
         if (req.getParameter("idUser") != null && !req.getParameter("idUser").matches("null"))
             idUser = Integer.parseInt(req.getParameter("idUser"));
