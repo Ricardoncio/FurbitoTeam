@@ -54,7 +54,10 @@ public class EquipoDAO {
         try {
             con = new Conector().getMYSQLConnection();
             PreparedStatement statement = con.prepareStatement("UPDATE equipo SET id_carta = ? WHERE pos = ? AND id_usuario = ?");
-            statement.setInt(1, idCarta);
+            if (idCarta == 0)
+                statement.setObject(1, null);
+            else
+                statement.setInt(1, idCarta);
             statement.setString(2, pos);
             statement.setInt(3, idUsuario);
             int i = statement.executeUpdate();
