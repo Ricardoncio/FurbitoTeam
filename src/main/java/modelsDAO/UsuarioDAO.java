@@ -183,6 +183,7 @@ public class UsuarioDAO {
         try {
             con = new Conector().getMYSQLConnection();
             PreparedStatement ps = con.prepareStatement("UPDATE equipo SET id_carta = null WHERE id_usuario = ?");
+            ps.setInt(1,idUser);
             ps.executeUpdate();
 
         } catch (SQLException e) {
