@@ -5,10 +5,7 @@ import models.Equipo;
 import util.Conector;
 import util.FurbitoException;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class EquipoDAO {
 
@@ -36,13 +33,13 @@ public class EquipoDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             if (con != null) {
                 try {
                     con.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    e.printStackTrace(System.out);
                 }
             }
         }
@@ -56,14 +53,17 @@ public class EquipoDAO {
 
         try {
             con = new Conector().getMYSQLConnection();
-            Statement statement = con.createStatement();
-            int i = statement.executeUpdate("UPDATE equipo SET id_carta = '" + idCarta + "' WHERE pos = '" + pos + "'");
+            PreparedStatement statement = con.prepareStatement("UPDATE equipo SET id_carta = ? WHERE pos = ? AND id_usuario = ?");
+            statement.setInt(1, idCarta);
+            statement.setString(2, pos);
+            statement.setInt(3, idUsuario);
+            int i = statement.executeUpdate();
             if (i == 0) {
                 throw new FurbitoException("No se ha cambiado ninguna carta");
             }
 
         } catch (SQLException  e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } catch (FurbitoException e) {
             status = 400;
         } finally {
@@ -71,7 +71,7 @@ public class EquipoDAO {
                 try {
                     con.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    e.printStackTrace(System.out);
                 }
             }
         }
