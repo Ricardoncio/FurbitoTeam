@@ -29,7 +29,7 @@ function mostrarAdmin() {
         const adminBtn = document.getElementById("adminBtn");
         adminBtn.classList.remove("hide");
         const tiradas = document.getElementById("contadorTiradas");
-        tiradas.style.right = "90px";
+        tiradas.style.right = "135px";
     }
 }
 
