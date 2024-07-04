@@ -176,4 +176,25 @@ public class UsuarioDAO {
             }
         }
     }
+
+    public static void borrarEquipo(int idUser) {
+        Connection con = null;
+
+        try {
+            con = new Conector().getMYSQLConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE equipo SET id_carta = null WHERE id_usuario = ?");
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.out);
+                }
+            }
+        }
+    }
 }
