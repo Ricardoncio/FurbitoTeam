@@ -15,7 +15,7 @@ public class CambiarEquipoServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int idUsuario = Integer.parseInt(req.getParameter("idUser"));
         int idCarta = 0;
-        if (req.getParameter("idCarta") != null && !req.getParameter("idCarta").isEmpty())
+        if (req.getParameter("idCarta") != null)
             idCarta = Integer.parseInt(req.getParameter("idCarta"));
         String pos = req.getParameter("pos");
 
