@@ -77,6 +77,20 @@ async function obtenerPlantilla(){
     return equipo;
 }
 
-function card(){}
+async function removeCard(pos){
+    console.log(pos)
+    const div = document.getElementById(pos);
+    div.children[1].remove();
+    const carta = document.createElement('img');
+    carta.src = '../recursos/blank.png';
+    div.appendChild(carta);
+    await actualizarPlantilla(null,pos);
+}
+
+async function clearInventory(){
+    const userId = JSON.parse(sessionStorage.getItem("user")).id;
+    await fetch("http://localhost:8080/FurbitoTeam/borrarEquipo?idUser="+userId,{method: "PUT"});
+}
+
 
 mostrarInventario()

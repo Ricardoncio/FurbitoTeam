@@ -28,6 +28,7 @@ body {
     position: relative;
     width: fit-content;
     cursor: grab;
+    margin: auto;
 }
 
 #deld{
@@ -36,6 +37,7 @@ body {
     position: relative;
     width: fit-content;
     cursor: grab;
+    margin: auto;
 }
 
 #defi{
@@ -44,6 +46,7 @@ body {
     position: relative;
     width: fit-content;
     cursor: grab;
+    margin: auto;
 }
 
 #defd{
@@ -52,6 +55,7 @@ body {
     position: relative;
     width: fit-content;
     cursor: grab;
+    margin: auto;
 }
 
 #por{
@@ -60,6 +64,13 @@ body {
     position: relative;
     width: fit-content;
     cursor: grab;
+    margin: auto;
+}
+
+.buttons{
+    position: absolute;
+    left: 5px;
+    top: 5px;
 }
 
 .trash{
@@ -69,12 +80,18 @@ body {
     top: 23px;
     right: 10px;
     font-size: xx-large;
-    color: red;
     background-color: white;
     border-radius: 1rem;
     padding: 5px;
     display: none;
     cursor: pointer;
+    text-decoration: none;
+}
+
+svg{
+    width: 30px;
+    height: 30px;
+    color: red;
 }
 
 .card:hover .trash {
