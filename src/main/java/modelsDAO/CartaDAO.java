@@ -12,43 +12,23 @@ public class CartaDAO {
         List<Carta> cartasArr = new ArrayList<>();
 
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM cartas");
+        ResultSet rs = stmt.executeQuery("SELECT id,imageLink,tier FROM modelosCartas");
 
         while (rs.next()) {
             Carta carta = new Carta();
+            carta.setId_modelo(rs.getInt("id"));
             carta.setImageLink(rs.getString("imageLink"));
             carta.setTier(rs.getInt("tier"));
-            carta.setAlt(rs.getString("alt"));
             cartasArr.add(carta);
         }
 
         return cartasArr;
     }
 
-    private static void guardarCartaEnColeccion(Connection con, Carta carta, int idUsuario) throws SQLException {
-        Carta nuevaCarta = new Carta();
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM poolDeCartas WHERE tier = ? AND imageLink = ? ORDER BY id_unico DESC LIMIT 1");
-        ps.setInt(1,carta.getTier());
-        ps.setString(2, carta.getImageLink());
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            nuevaCarta.setId(rs.getInt("id_unico"));
-            nuevaCarta.setImageLink(rs.getString("imageLink"));
-            nuevaCarta.setTier(rs.getInt("tier"));
-            nuevaCarta.setAlt(rs.getString("alt"));
-        }
-
-        ps = con.prepareStatement("INSERT INTO inventario VALUES (?,?)");
-        ps.setInt(1,idUsuario);
-        ps.setInt(2,nuevaCarta.getId());
-        ps.executeUpdate();
-    }
-
-    public static void guardarCartaEnPool(Connection con, Carta carta) throws SQLException {
-        PreparedStatement ps = con.prepareStatement("INSERT INTO poolDeCartas (imageLink,tier,alt) VALUES (?,?,?)");
-        ps.setString(1,carta.getImageLink());
-        ps.setInt(2,carta.getTier());
-        ps.setString(3,carta.getAlt());
+    public static void guardarCartaEnPool(Connection con, Carta carta, int idUser) throws SQLException {
+        PreparedStatement ps = con.prepareStatement("INSERT INTO poolDeCartas (id_modelo, id_usuario) VALUES (?,?)");
+        ps.setInt(1,carta.getId_modelo());
+        ps.setInt(2,idUser);
         ps.executeUpdate();
     }
 
@@ -69,7 +49,7 @@ public class CartaDAO {
             int tier;
             // 5 -> especial; 4 -> JV; 3 -> oro; 2 -> plata; 1 -> bronce
             if (rng <= 3)
-                // Aqui deberia ser 5 pero como no hay cartas especiales aun no quiero que me de fallos a la hora de testear
+                // Aquí debería ser 5, pero como no hay cartas especiales aún no quiero que me dé fallos a la hora de testear
                 tier = 4;
             else if (rng <= 10)
                 tier = 4;
@@ -83,23 +63,54 @@ public class CartaDAO {
             List<Carta> cartasArrPorTier = cartasArr.stream().filter(carta -> carta.getTier() == tier).toList();
             int i = new Random().nextInt(cartasArrPorTier.size());
             cartaElegida = cartasArrPorTier.get(i);
-            guardarCartaEnPool(con, cartaElegida);
-            guardarCartaEnColeccion(con, cartaElegida, idUsuario);
+            guardarCartaEnPool(con, cartaElegida, idUsuario);
             restarTirada(con, idUsuario);
 
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         } finally {
             if (con != null) {
                 try {
                     con.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    e.printStackTrace(System.out);
                 }
             }
         }
 
         return cartaElegida;
+    }
+
+    public static void crearCarta(Carta carta) {
+        Connection con = null;
+
+        try {
+            con = new Conector().getMYSQLConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO modelosCartas (imageLink, tier, media, pac, sho, pas, dri, def, phy) " +
+                            "VALUES (?,?,?,?,?,?,?,?,?);");
+            ps.setString(1,carta.getImageLink());
+            ps.setInt(2,carta.getTier());
+            ps.setInt(3,carta.getMedia());
+            ps.setInt(4,carta.getPac());
+            ps.setInt(5,carta.getSho());
+            ps.setInt(6,carta.getPas());
+            ps.setInt(7,carta.getDri());
+            ps.setInt(8,carta.getDef());
+            ps.setInt(9,carta.getPhy());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.out);
+                }
+            }
+        }
     }
 }

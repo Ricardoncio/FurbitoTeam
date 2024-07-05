@@ -34,6 +34,14 @@ public class RankingDAO {
 
         } catch (SQLException e) {
             e.printStackTrace(System.out);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.out);
+                }
+            }
         }
 
         return ranking;

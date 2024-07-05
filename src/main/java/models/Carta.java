@@ -10,19 +10,39 @@ import lombok.Setter;
 
 public class Carta {
 
-    private int id;
+    private Integer id;
+    private Integer id_modelo;
     private String imageLink;
     // 1 -> bronce; 2 -> plata; 3 -> oro; 4 -> JV; 5 -> especial;
     private int tier;
-    private String alt;
+    private int media;
+    private int pac;
+    private int sho;
+    private int pas;
+    private int dri;
+    private int def;
+    private int phy;
 
     @Override
     public String toString() {
         return "Carta{" +
                 "id=" + id +
+                ", id_modelo=" + id_modelo +
                 ", imageLink='" + imageLink + '\'' +
                 ", tier=" + tier +
-                ", alt='" + alt + '\'' +
+                ", media=" + media +
+                ", pac=" + pac +
+                ", sho=" + sho +
+                ", pas=" + pas +
+                ", dri=" + dri +
+                ", def=" + def +
+                ", phy=" + phy +
                 '}';
+    }
+
+    public void calcularMedia() {
+        int totalPuntos = pac + sho + pas + dri + def + phy;
+        int media = Math.round((float) totalPuntos / 6);
+        this.media = media;
     }
 }

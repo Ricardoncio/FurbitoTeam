@@ -3,21 +3,27 @@ drop database FurbitoTeam;
 create database if not exists FurbitoTeam;
 use FurbitoTeam;
 
-create table if not exists cartas(
+create table if not exists modelosCartas(
 	id int auto_increment not null primary key,
     imageLink longtext not null,
     tier int not null,
-    alt varchar(20) not null
+    media int not null,
+    pac int not null,
+    sho int not null,
+    pas int not null,
+    dri int not null,
+    def int not null,
+    phy int not null
 );
 
-insert into cartas (imageLink, tier, alt) values 
-("https://i.ibb.co/B6v4gjL/Byronv10.png", 3, "Carta de Pablopri"),
-("https://i.ibb.co/swSHVQX/Byron-JVv10.png", 4, "Carta de Pablopri JV"),
-("https://i.ibb.co/VDVgFns/Danetiv10.png", 3, "Carta de Daneti"),
-("https://i.ibb.co/W65VkhC/Elyayov10.png", 3, "Carta de Yayo"),
-("https://i.ibb.co/qkfc7vC/Pukav10.png", 2, "Carta de Puka"),
-("https://i.ibb.co/4V2CJ3S/Pricev10.png", 1, "Carta de Price"),
-("https://i.ibb.co/0YFRvmv/Talleresv10.png", 3, "Carta de Talleres");
+insert into modelosCartas (imageLink, tier, media, pac, sho, pas, dri, def, phy) values 
+("https://i.ibb.co/NmyTtdx/Byronv10.png", 3, 83, 90, 85, 81, 88, 74, 78),
+("https://i.ibb.co/mH6KLXd/Byron-JVv10.png", 4, 86, 93, 88, 84, 91, 77, 81),
+("https://i.ibb.co/VDVgFns/Danetiv10.png", 3, 76, 85, 79, 76, 84, 72, 60),
+("https://i.ibb.co/W65VkhC/Elyayov10.png", 3, 76, 76, 64, 73, 69, 85, 89),
+("https://i.ibb.co/qkfc7vC/Pukav10.png", 2, 69, 74, 79, 75, 64, 67, 52),
+("https://i.ibb.co/4V2CJ3S/Pricev10.png", 1, 62, 65,53, 72, 54, 80, 48),
+("https://i.ibb.co/0YFRvmv/Talleresv10.png", 3, 81, 85, 71, 76, 76, 86, 90);
 
 
 create table if not exists usuarios(
@@ -29,18 +35,12 @@ create table if not exists usuarios(
 
 create table if not exists poolDeCartas(
 	id_unico int auto_increment not null primary key,
-    imageLink longtext not null,
-    tier int not null,
-    alt varchar(20) not null
+    id_modelo int not null,
+    id_usuario int not null
 );
-
-create table if not exists inventario(
-	id_usuario int not null,
-    id_carta int not null
-);
-alter table inventario 
-add constraint fk_inventario_usuario foreign key (id_usuario) references usuarios(id),
-add constraint fk_inventario_carta foreign key (id_carta) references poolDeCartas(id_unico);
+alter table poolDeCartas
+add constraint fk_pool_usuario foreign key (id_usuario) references usuarios(id),
+add constraint fk_pool_modelo foreign key (id_modelo) references modelosCartas(id);
 
 insert into usuarios (nombre_usuario) values
 ("Byronhate"),
@@ -87,7 +87,7 @@ select * from usuarios;
 select * from rankingVersion;
 select * from equipo;
 select * from equipo;
-select * from cartas;
+select * from modelosCartas;
 select * from poolDeCartas;
 select * from inventario;
 SELECT * FROM inventario AS i INNER JOIN cartas AS c on i.id_carta = c.id WHERE i.id_usuario = 4;

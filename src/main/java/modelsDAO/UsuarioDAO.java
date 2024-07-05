@@ -81,13 +81,11 @@ public class UsuarioDAO {
             con = new Conector().getMYSQLConnection();
             Statement statement = con.createStatement();
 
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM inventario AS i INNER JOIN poolDeCartas AS p on i.id_carta = p.id_unico WHERE i.id_usuario = " + idUsuario);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM pooldecartas AS p INNER JOIN modelosCartas AS m on p.id_modelo = m.id WHERE p.id_usuario = " + idUsuario);
             while (resultSet.next()) {
                 Carta carta = new Carta();
                 carta.setId(resultSet.getInt("p.id_unico"));
-                carta.setImageLink(resultSet.getString("p.imageLink"));
-                carta.setTier(resultSet.getInt("p.tier"));
-                carta.setAlt(resultSet.getString("p.alt"));
+                carta.setImageLink(resultSet.getString("m.imageLink"));
                 coleccion.add(carta);
             }
 
@@ -116,7 +114,6 @@ public class UsuarioDAO {
         }
 
         try {
-            con = new Conector().getMYSQLConnection();
             PreparedStatement ps = con.prepareStatement(update.toString());
             ps.executeUpdate();
 

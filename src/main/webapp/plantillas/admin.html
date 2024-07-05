@@ -28,7 +28,7 @@
                     <input type="checkbox" name="yayo" id="input7"/><label for="input7">Elyayo</label>
                 </div>
                 <div id="puntosTop">
-                    <p>Entrega de puntos de jornada:</p>
+                    <p>----&nbsp;&nbsp;Entrega de puntos de jornada&nbsp;&nbsp;----</p>
                     <div>
                         <input type="checkbox" name="borrarPuntos" id="borrarChk"/><label for="borrarChk">Borrar puntos (se borrarán antes de sumar nada)</label>
                     </div>
@@ -103,6 +103,35 @@
                             <option value="Pricelol">Pricelol</option>
                             <option value="Elyayo">Elyayo</option>
                         </select>
+                    </div>
+                </div>
+                <div id="crearCartaDiv">
+                    <p>----&nbsp;&nbsp;Crear una nueva carta&nbsp;&nbsp;----</p>
+                    <div class="divCarta">
+                        <label for="carta1">Link de la carta:</label><input type="text" id="carta1" name="linkCarta"/>
+                    </div>
+                    <p>Bronce → 1&nbsp;&nbsp;Plata → 2&nbsp;&nbsp;Oro → 3&nbsp;&nbsp;JV → 4&nbsp;&nbsp;Especial → 5</p>
+                    <div class="divCarta">
+                        <label for="carta2">Tier de la carta:</label>
+                        <select name="tierCarta" id="carta2">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="divCarta">
+                        <label  class="statLabel" for="carta5">PAC:</label><input type="number" id="carta5" name="pacCarta" min="1" max="99"/>
+                        <label  class="statLabel" for="carta6">SHO:</label><input type="number" id="carta6" name="shoCarta" min="1" max="99"/>
+                    </div>
+                    <div class="divCarta">
+                        <label  class="statLabel" for="carta7">PAS:</label><input type="number" id="carta7" name="pasCarta" min="1" max="99"/>
+                        <label  class="statLabel" for="carta8">DRI:</label><input type="number" id="carta8" name="driCarta" min="1" max="99"/>
+                    </div>
+                    <div class="divCarta">
+                        <label  class="statLabel" for="carta9">DEF:</label><input type="number" id="carta9" name="defCarta" min="1" max="99"/>
+                        <label  class="statLabel" for="carta10">PHY:</label><input type="number" id="carta10" name="phyCarta" min="1" max="99"/>
                     </div>
                 </div>
                 <input class="my-button" type="submit"/>

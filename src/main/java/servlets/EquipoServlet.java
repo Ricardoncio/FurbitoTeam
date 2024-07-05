@@ -20,15 +20,11 @@ public class EquipoServlet extends HttpServlet {
         int idUsuario = Integer.parseInt(req.getParameter("idUser"));
         Equipo equipo = EquipoDAO.recuperarEquipo(idUsuario);
 
-        if (equipo != null) {
-            String respuesta = new Gson().toJson(equipo);
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            PrintWriter out = resp.getWriter();
-            out.print(respuesta);
-            out.flush();
-        } else {
-            resp.sendError(400);
-        }
+        String respuesta = new Gson().toJson(equipo);
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        PrintWriter out = resp.getWriter();
+        out.print(respuesta);
+        out.flush();
     }
 }

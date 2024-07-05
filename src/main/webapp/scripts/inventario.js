@@ -16,7 +16,7 @@ function crearCartas(inventory,equipo){
             const carta = document.createElement('img');
             carta.id = 'card-'+card.id;
             carta.src = card.imageLink;
-            carta.alt = card.alt;
+            carta.alt = "Carta de Furbito";
             carta.draggable = true;
             carta.style.cursor = 'grab';
             carta.addEventListener('dragstart', drag);
@@ -27,7 +27,7 @@ function crearCartas(inventory,equipo){
             const carta = document.createElement('img');
             carta.id = 'card-'+card.id;
             carta.src = card.imageLink;
-            carta.alt = card.alt;
+            carta.alt = "Carta de Furbito";
             carta.style.cursor = 'grab';
             carta.addEventListener('dragstart', drag);
             crdInTeam.appendChild(carta)
