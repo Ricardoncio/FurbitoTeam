@@ -15,11 +15,6 @@ header h2 {
     align-items: center;
     gap: 10px;
 }
-#contadorTiradas {
-    margin: 0;
-    position: relative;
-    right: 175px;
-}
 #divContenedor {
     margin: auto;
     display: flex;
