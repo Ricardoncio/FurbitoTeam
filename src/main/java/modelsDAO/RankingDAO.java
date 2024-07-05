@@ -38,4 +38,25 @@ public class RankingDAO {
 
         return ranking;
     }
+
+    public static void resetRanking() {
+        Connection con = null;
+
+        try {
+            con = new Conector().getMYSQLConnection();
+            PreparedStatement ps = con.prepareStatement("UPDATE rankingVersion SET puntos = 0 WHERE 1 = 1;");
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.out);
+                }
+            }
+        }
+    }
 }

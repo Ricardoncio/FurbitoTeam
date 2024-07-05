@@ -8,16 +8,16 @@
         <link rel="stylesheet" href="../estilos/admin.css">
     </head>
     <body class="columnaCentrado">
-        <h1>Furbito Team</h1>
+        <h1 class="volverInicio">Furbito Team</h1>
         <div id="divContenedor" class="columnaCentrado">
             <div id="divSubtitulo">
                 <h2>Panel de Admin</h2>
-                <button class="my-button" id="volverInicio">Volver al inicio</button>
+                <button class="my-button volverInicio">Volver al inicio</button>
             </div>
             <form action="../admin" method="POST" id="formulario" class="columnaCentrado">
                 <div>
                     <label for="input1">Sumar tiradas:</label>
-                    <input type="number" id="input1" name="nuevasTiradas" min="0"/>
+                    <input type="number" id="input1" name="nuevasTiradas" min="0" placeholder="0,1,2,3..."/>
                 </div>
                 <div>
                     <input type="checkbox" name="pablo" id="input2"/><label for="input2">Byronhate</label>
@@ -29,24 +29,80 @@
                 </div>
                 <div id="puntosTop">
                     <p>Entrega de puntos de jornada:</p>
-                    <p>Recuerda que debes escribir los nombres tal como aparaecen arriba :)</p>
-                    <div class="opcionTop">
-                        <label for="top1">Primero: </label><input type="text" id="top1" name="top1">
+                    <div>
+                        <input type="checkbox" name="borrarPuntos" id="borrarChk"/><label for="borrarChk">Borrar puntos (se borrarán antes de sumar nada)</label>
                     </div>
                     <div class="opcionTop">
-                        <label for="top2">Segundo: </label><input type="text" id="top2" name="top2">
+                        <label for="top1">Primero: </label>
+                        <select id="top1" name="top1">
+                            <option value=""></option>
+                            <option value="Byronhate">Byronhate</option>
+                            <option value="Danetibm">Danetibm</option>
+                            <option value="Talleres">Talleres</option>
+                            <option value="Pukaso">Pukaso</option>
+                            <option value="Pricelol">Pricelol</option>
+                            <option value="Elyayo">Elyayo</option>
+                        </select>
                     </div>
                     <div class="opcionTop">
-                        <label for="top3">Tercero: </label><input type="text" id="top3" name="top3">
+                        <label for="top2">Segundo: </label>
+                        <select id="top2" name="top2">
+                            <option value=""></option>
+                            <option value="Byronhate">Byronhate</option>
+                            <option value="Danetibm">Danetibm</option>
+                            <option value="Talleres">Talleres</option>
+                            <option value="Pukaso">Pukaso</option>
+                            <option value="Pricelol">Pricelol</option>
+                            <option value="Elyayo">Elyayo</option>
+                        </select>
                     </div>
                     <div class="opcionTop">
-                        <label for="top4">Cuarto: </label><input type="text" id="top4" name="top4">
+                        <label for="top3">Tercero: </label>
+                        <select id="top3" name="top3">
+                            <option value=""></option>
+                            <option value="Byronhate">Byronhate</option>
+                            <option value="Danetibm">Danetibm</option>
+                            <option value="Talleres">Talleres</option>
+                            <option value="Pukaso">Pukaso</option>
+                            <option value="Pricelol">Pricelol</option>
+                            <option value="Elyayo">Elyayo</option>
+                        </select>
                     </div>
                     <div class="opcionTop">
-                        <label for="top5">Quinto: </label><input type="text" id="top5" name="top5">
+                        <label for="top4">Cuarto: </label>
+                        <select id="top4" name="top4">
+                            <option value=""></option>
+                            <option value="Byronhate">Byronhate</option>
+                            <option value="Danetibm">Danetibm</option>
+                            <option value="Talleres">Talleres</option>
+                            <option value="Pukaso">Pukaso</option>
+                            <option value="Pricelol">Pricelol</option>
+                            <option value="Elyayo">Elyayo</option>
+                        </select>
                     </div>
                     <div class="opcionTop">
-                        <label for="top6">Sexto: </label><input type="text" id="top6" name="top6">
+                        <label for="top5">Quinto: </label>
+                        <select id="top5" name="top5">
+                            <option value=""></option>
+                            <option value="Byronhate">Byronhate</option>
+                            <option value="Danetibm">Danetibm</option>
+                            <option value="Talleres">Talleres</option>
+                            <option value="Pukaso">Pukaso</option>
+                            <option value="Pricelol">Pricelol</option>
+                            <option value="Elyayo">Elyayo</option>
+                        </select>
+                    </div>
+                    <div class="opcionTop">
+                        <label for="top6">Sexto: </label>
+                        <select id="top6" name="top6">
+                            <option value=""></option>
+                            <option value="Byronhate">Byronhate</option>
+                            <option value="Danetibm">Danetibm</option>
+                            <option value="Talleres">Talleres</option>
+                            <option value="Pukaso">Pukaso</option>
+                            <option value="Pricelol">Pricelol</option>
+                            <option value="Elyayo">Elyayo</option>
+                        </select>
                     </div>
                 </div>
                 <input class="my-button" type="submit"/>

@@ -18,9 +18,9 @@ function bienvenida() {
     if (mensajeBienvenida) {
         mensajeBienvenida.innerText = "¡Bienvenido " + user.nombreUsuario + "!";
     }
-    const contadorTiradas = document.getElementById("contadorTiradas");
-    if (contadorTiradas) {
-        contadorTiradas.innerText = "Tiradas: " + user.tiradas;
+    const botonTiradas = document.getElementById("tiradasBtn");
+    if (botonTiradas) {
+        botonTiradas.innerText = "Abrir sobre (" + user.tiradas + ")";
     }
 }
 function mostrarAdmin() {
@@ -28,8 +28,6 @@ function mostrarAdmin() {
     if (user.id === 1 || user.id === 3) {
         const adminBtn = document.getElementById("adminBtn");
         adminBtn.classList.remove("hide");
-        const tiradas = document.getElementById("contadorTiradas");
-        tiradas.style.right = "135px";
     }
 }
 
@@ -40,7 +38,7 @@ recuperarUsuario().then(() => {
 
 async function mostrarCarta(){
     const user = JSON.parse(sessionStorage.getItem("user"));
-    const contadorTiradas = document.getElementById("contadorTiradas");
+    const botonTiradas = document.getElementById("tiradasBtn");
     if (user.tiradas > 0) {
         const response= await fetch("http://localhost:8080/FurbitoTeam/pedirCarta?idUser="+user.id,{method: "GET"});
         const carta = await response.json();
@@ -55,10 +53,10 @@ async function mostrarCarta(){
         document.body.appendChild(divContenedor);
         divContenedor.appendChild(imagenCarta);
         user.tiradas = user.tiradas - 1;
-        contadorTiradas.innerText = "Tiradas: " + user.tiradas;
+        botonTiradas.innerText = "Abrir sobre (" + user.tiradas + ")";
         sessionStorage.setItem("user", JSON.stringify(user));
     } else {
-        contadorTiradas.style.color = "red";
+        botonTiradas.style.color = "red";
     }
 }
 

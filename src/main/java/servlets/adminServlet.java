@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import modelsDAO.RankingDAO;
 import modelsDAO.UsuarioDAO;
 import util.Conector;
 
@@ -24,6 +25,10 @@ public class adminServlet extends HttpServlet {
             String tiradas = req.getParameter("nuevasTiradas");
             if (tiradas != null && !tiradas.isEmpty()) {
                 UsuarioDAO.parteTiradas(req, con);
+            }
+            if (req.getParameter("borrarPuntos") != null
+                    && req.getParameter("borrarPuntos").equals("on")){
+                RankingDAO.resetRanking();
             }
             UsuarioDAO.partePuntos(req, con);
         }
