@@ -48,13 +48,15 @@ function drag(ev) {
 async function drop(ev) {
     event.preventDefault();
     const draggedElementId = event.dataTransfer.getData('text/plain');
-    if(draggedElementId!==ev.target.id){
+    if(!draggedElementId.includes('recursos/blank.png') && draggedElementId!==ev.target.id){
         ev.target.remove();
         const dropZone = event.currentTarget;
         const draggedElement = document.getElementById(draggedElementId);
         if(draggedElement.parentElement.id==='inventario'){
-            const inventario = document.getElementById('inventario');
-            inventario.appendChild(ev.target);
+            if(ev.target.id){
+                const inventario = document.getElementById('inventario');
+                inventario.appendChild(ev.target);
+            }
         }else{
             const otherCard = document.getElementById(draggedElement.parentElement.id);
             otherCard.appendChild(ev.target);
@@ -78,19 +80,36 @@ async function obtenerPlantilla(){
 }
 
 async function removeCard(pos){
-    console.log(pos)
     const div = document.getElementById(pos);
-    div.children[1].remove();
-    const carta = document.createElement('img');
-    carta.src = '../recursos/blank.png';
-    div.appendChild(carta);
-    await actualizarPlantilla(null,pos);
+    const inventario = document.getElementById('inventario');
+    const card = div.children[1];
+    if(card.tagName!=='svg' && card.id){
+        div.children[1].remove();
+        inventario.appendChild(card);
+        const carta = document.createElement('img');
+        carta.src = '../recursos/blank.png';
+        div.appendChild(carta);
+        await actualizarPlantilla(null,pos);
+    }
 }
 
 async function clearInventory(){
     const userId = JSON.parse(sessionStorage.getItem("user")).id;
     await fetch("http://localhost:8080/FurbitoTeam/borrarEquipo?idUser="+userId,{method: "PUT"});
-}
 
+    const team = document.querySelector('.campo');
+    for (const card of team.children) {
+        if(card.children[1] && card.children[1].tagName!=='svg' && card.children[1].id){
+            const inventario = document.getElementById('inventario');
+            const card2 = card.children[1];
+            card.children[1].remove();
+            inventario.appendChild(card2);
+            const carta = document.createElement('img');
+            carta.src = '../recursos/blank.png';
+            card.appendChild(carta)
+        }
+      }
+
+}
 
 mostrarInventario()
