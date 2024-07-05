@@ -8,11 +8,13 @@ function redirigir() {
 redirigir();
 
 function volverInicio() {
-    const inicioBtn = document.getElementById("volverInicio");
+    const inicioBtn = document.getElementsByClassName("volverInicio");
     if (inicioBtn) {
-        inicioBtn.addEventListener("click", () => {
-            window.location.href = "http://localhost:8080/FurbitoTeam/index.html"
-        })
+        for (let i = 0; i < inicioBtn.length; i++) {
+            inicioBtn[i].addEventListener("click", () => {
+                window.location.href = "http://localhost:8080/FurbitoTeam/index.html"
+            })
+        }
     }
 }
 volverInicio();
