@@ -11,7 +11,8 @@ create table if not exists cartas(
 );
 
 insert into cartas (imageLink, tier, alt) values 
-("https://i.ibb.co/PNxSLm7/Byronv10.png", 4, "Carta de Pablopri"),
+("https://i.ibb.co/B6v4gjL/Byronv10.png", 3, "Carta de Pablopri"),
+("https://i.ibb.co/swSHVQX/Byron-JVv10.png", 4, "Carta de Pablopri JV"),
 ("https://i.ibb.co/VDVgFns/Danetiv10.png", 3, "Carta de Daneti"),
 ("https://i.ibb.co/W65VkhC/Elyayov10.png", 3, "Carta de Yayo"),
 ("https://i.ibb.co/qkfc7vC/Pukav10.png", 2, "Carta de Puka"),
@@ -66,7 +67,24 @@ insert into equipo values
 (5,null,"por"),(5,null,"defd"),(5,null,"defi"),(5,null,"deld"),(5,null,"deli"),
 (6,null,"por"),(6,null,"defd"),(6,null,"defi"),(6,null,"deld"),(6,null,"deli");
 
+create table if not exists rankingVersion(
+    nombre_usuario varchar(30) not null,
+    puntos int not null default 0
+);
+alter table rankingVersion add constraint fk_nombre_usuario foreign key (nombre_usuario) references usuarios(nombre_usuario);
+
+insert into rankingVersion (nombre_usuario) values 
+("Byronhate"),
+("Danetibm"),
+("Talleres"),
+("Pukaso"),
+("Pricelol"),
+("Elyayo");
+
+
 /*
+select * from usuarios;
+select * from rankingVersion;
 select * from equipo;
 select * from equipo;
 select * from cartas;

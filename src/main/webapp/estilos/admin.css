@@ -1,35 +1,84 @@
-h1 {
-    font-size: 80px;
-    margin-top: 20px;
-    margin-bottom: 0;
-}
-#divContenedor {
-    display: flex;
-    justify-content: center;
-}
-form {
+.columnaCentrado {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+}
+h1 {
+    font-size: 80px;
+    margin-top: 20px;
+}
+#divSubtitulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+#divSubtitulo button {
+    height: 35px;
+}
+#divContenedor {
     width: 30vw;
-    height: 50vh;
     background-color: rgba(43,60,41,0.9);
-    padding: 30px;
     border-radius: 15px;
+    padding: 30px;
+}
+form {
+    gap: 30px;
+    padding: 30px;
+}
+#puntosTop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.opcionTop {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
 }
 .my-button {
     width: 150px;
-    padding: 20px 30px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
 }
-.my-button:hover {
-    background-color: #45a049;
+/* Snackbar */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
 }
-.my-button:active {
-    background-color: #3e8e41;
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
 }

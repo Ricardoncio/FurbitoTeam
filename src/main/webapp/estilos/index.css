@@ -1,7 +1,13 @@
+.hide {
+    display: none;
+}
 header {
     display: flex;
     flex-direction: column;
     height: auto;
+}
+header h2 {
+    margin-bottom: 0;
 }
 #barraBotones {
     display: flex;
@@ -12,13 +18,16 @@ header {
 #contadorTiradas {
     margin: 0;
     position: relative;
-    right: 150px;
+    right: 175px;
 }
 #divContenedor {
     margin: auto;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+}
+.carta {
+    transform: scale(0.9);
 }
 @media screen and (min-width: 1500px) {
     #divContenedor {
@@ -48,22 +57,11 @@ header {
         left: 0;
     }
 }
-.my-button {
-    padding: 20px 30px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.my-button:hover {
-    background-color: #45a049;
-}
-.my-button:active {
-    background-color: #3e8e41;
-}
 .desconectar:hover {
     background-color: #6D0404FF;
+}
+#adminBtn:hover {
+    background-color: dodgerblue;
 }
 a{
     text-decoration: none;

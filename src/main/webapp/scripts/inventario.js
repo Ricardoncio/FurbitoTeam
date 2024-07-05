@@ -18,6 +18,7 @@ function crearCartas(inventory,equipo){
             carta.src = card.imageLink;
             carta.alt = card.alt;
             carta.draggable = true;
+            carta.style.cursor = 'grab';
             carta.addEventListener('dragstart', drag);
             inventario.appendChild(carta);
         }else{
@@ -27,6 +28,8 @@ function crearCartas(inventory,equipo){
             carta.id = 'card-'+card.id;
             carta.src = card.imageLink;
             carta.alt = card.alt;
+            carta.style.cursor = 'grab';
+            carta.addEventListener('dragstart', drag);
             crdInTeam.appendChild(carta)
         }
     });
@@ -44,12 +47,22 @@ function drag(ev) {
   
 async function drop(ev) {
     event.preventDefault();
-    ev.target.remove();
     const draggedElementId = event.dataTransfer.getData('text/plain');
-    const dropZone = event.currentTarget;
-    const draggedElement = document.getElementById(draggedElementId);
-    dropZone.appendChild(draggedElement);
-    await actualizarPlantilla(cardId,dropZone.id);
+    if(draggedElementId!==ev.target.id){
+        ev.target.remove();
+        const dropZone = event.currentTarget;
+        const draggedElement = document.getElementById(draggedElementId);
+        if(draggedElement.parentElement.id==='inventario'){
+            const inventario = document.getElementById('inventario');
+            inventario.appendChild(ev.target);
+        }else{
+            const otherCard = document.getElementById(draggedElement.parentElement.id);
+            otherCard.appendChild(ev.target);
+            await actualizarPlantilla(ev.target.id.split('-')[1]?ev.target.id.split('-')[1]:null,ev.target.parentElement.id);
+        }
+        dropZone.appendChild(draggedElement);
+        await actualizarPlantilla(cardId,dropZone.id);
+    }
 }
 
 async function actualizarPlantilla(cardId,pos){
@@ -64,4 +77,20 @@ async function obtenerPlantilla(){
     return equipo;
 }
 
-mostrarInventario() 
+async function removeCard(pos){
+    console.log(pos)
+    const div = document.getElementById(pos);
+    div.children[1].remove();
+    const carta = document.createElement('img');
+    carta.src = '../recursos/blank.png';
+    div.appendChild(carta);
+    await actualizarPlantilla(null,pos);
+}
+
+async function clearInventory(){
+    const userId = JSON.parse(sessionStorage.getItem("user")).id;
+    await fetch("http://localhost:8080/FurbitoTeam/borrarEquipo?idUser="+userId,{method: "PUT"});
+}
+
+
+mostrarInventario()

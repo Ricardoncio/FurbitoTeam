@@ -1,22 +1,18 @@
-function bienvenida() {
-    const user = JSON.parse(sessionStorage.getItem("user"));
-    const mensajeBienvenida = document.getElementById("mensajeBienvenida");
-    if(mensajeBienvenida){
-        mensajeBienvenida.innerText = "¡Bienvenido " + user.nombreUsuario + "!";
-    }
-    const contadorTiradas = document.getElementById("contadorTiradas");
-    if (contadorTiradas) {
-        contadorTiradas.innerText = "Tiradas: " + user.tiradas;
-    }
-}
-
 function redirigir() {
+    const idUser = sessionStorage.getItem("idUser");
     const user = JSON.parse(sessionStorage.getItem("user"));
-    if (user != null) {
-        bienvenida();
-    } else {
+    if (user == null && idUser == null) {
         window.location.href = "http://localhost:8080/FurbitoTeam/plantillas/login.html";
     }
 }
-
 redirigir();
+
+function volverInicio() {
+    const inicioBtn = document.getElementById("volverInicio");
+    if (inicioBtn) {
+        inicioBtn.addEventListener("click", () => {
+            window.location.href = "http://localhost:8080/FurbitoTeam/index.html"
+        })
+    }
+}
+volverInicio();

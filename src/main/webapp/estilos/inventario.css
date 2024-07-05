@@ -22,31 +22,81 @@ body {
     margin: auto;
 }
 
-.deli{    
-    color: white;
-    position: relative
-}
-
-.deld{    
-    color: white;
-    position: relativ
-}
-
-.defi{    
+#deli{
+    position: relative;
     color: white;
     position: relative;
+    width: fit-content;
+    cursor: grab;
+    margin: auto;
 }
 
-.defd{
-    color: white;
-    position: relativ
-}
-
-.por{
+#deld{
+    position: relative;
     color: white;
     position: relative;
+    width: fit-content;
+    cursor: grab;
+    margin: auto;
 }
 
+#defi{
+    position: relative;
+    color: white;
+    position: relative;
+    width: fit-content;
+    cursor: grab;
+    margin: auto;
+}
+
+#defd{
+    position: relative;
+    color: white;
+    position: relative;
+    width: fit-content;
+    cursor: grab;
+    margin: auto;
+}
+
+#por{
+    position: relative;
+    color: white;
+    position: relative;
+    width: fit-content;
+    cursor: grab;
+    margin: auto;
+}
+
+.buttons{
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+.trash{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 23px;
+    right: 10px;
+    font-size: xx-large;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 5px;
+    display: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+svg{
+    width: 30px;
+    height: 30px;
+    color: red;
+}
+
+.card:hover .trash {
+    display: block;
+}
 #inventario{
     position: absolute;
     bottom: 0;
