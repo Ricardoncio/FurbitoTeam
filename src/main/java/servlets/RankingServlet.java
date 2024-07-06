@@ -12,12 +12,14 @@ import modelsDAO.RankingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "RankingIRLServlet", urlPatterns = "/rankingIRL")
-public class RankingIRLServlet extends HttpServlet {
+@WebServlet(name = "RankingIRLServlet", urlPatterns = "/ranking")
+public class RankingServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Ranking ranking = RankingDAO.recuperarRanking();
+
+        boolean IRL = (req.getParameter("IRL").equals("true"));
+        Ranking ranking = RankingDAO.recuperarRanking(IRL);
 
         String json = new Gson().toJson(ranking);
         resp.setContentType("application/json");

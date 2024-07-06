@@ -67,13 +67,13 @@ insert into equipo values
 (5,null,"por"),(5,null,"defd"),(5,null,"defi"),(5,null,"deld"),(5,null,"deli"),
 (6,null,"por"),(6,null,"defd"),(6,null,"defi"),(6,null,"deld"),(6,null,"deli");
 
-create table if not exists rankingVersion(
+create table if not exists rankingIRL(
     nombre_usuario varchar(30) not null,
     puntos int not null default 0
 );
-alter table rankingVersion add constraint fk_nombre_usuario foreign key (nombre_usuario) references usuarios(nombre_usuario);
+alter table rankingIRL add constraint fk_nombre_usuario foreign key (nombre_usuario) references usuarios(nombre_usuario);
 
-insert into rankingIRL (nombre_usuario) values 
+insert into ranking (nombre_usuario) values 
 ("Byronhate"),
 ("Danetibm"),
 ("Talleres"),

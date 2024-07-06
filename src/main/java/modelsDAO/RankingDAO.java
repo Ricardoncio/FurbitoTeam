@@ -10,13 +10,15 @@ import java.sql.SQLException;
 
 public class RankingDAO {
 
-    public static Ranking recuperarRanking() {
+    public static Ranking recuperarRanking(boolean IRL) {
         Ranking ranking = new Ranking();
         Connection con = null;
+        String query = (IRL) ? "SELECT nombre_usuario,puntosIRL FROM ranking ORDER BY puntosIRL DESC"
+                : "SELECT nombre_usuario,puntos FROM ranking ORDER BY puntos DESC";
 
         try {
             con = new Conector().getMYSQLConnection();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM rankingIRL ORDER BY puntos DESC");
+            PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             int contador = 0;
             while (rs.next()) {
@@ -47,12 +49,14 @@ public class RankingDAO {
         return ranking;
     }
 
-    public static void resetRankingIRL() {
+    public static void resetRanking(boolean IRL) {
         Connection con = null;
+        String query = (IRL) ? "UPDATE ranking SET puntosIRL = 0 WHERE 1 = 1;"
+                : "UPDATE ranking SET puntos = 0 WHERE 1 = 1;";
 
         try {
             con = new Conector().getMYSQLConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE rankingIRL SET puntos = 0 WHERE 1 = 1;");
+            PreparedStatement ps = con.prepareStatement(query);
             ps.executeUpdate();
 
         } catch (SQLException e) {

@@ -27,9 +27,10 @@ public class adminServlet extends HttpServlet {
                 UsuarioDAO.parteTiradas(req, con);
             }
             if (req.getParameter("borrarPuntos") != null && req.getParameter("borrarPuntos").equals("on")){
-                RankingDAO.resetRankingIRL();
+                boolean IRL = (req.getParameter("IRL") != null && req.getParameter("IRL").equals("on"));
+                RankingDAO.resetRanking(IRL);
             }
-            UsuarioDAO.partePuntosIRL(req, con);
+            UsuarioDAO.partePuntos(req, con);
 
             if (!req.getParameter("linkCarta").isEmpty() && !req.getParameter("tierCarta").isEmpty()
                     && !req.getParameter("pacCarta").isEmpty() && !req.getParameter("shoCarta").isEmpty()

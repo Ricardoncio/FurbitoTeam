@@ -182,7 +182,9 @@ public class UsuarioDAO {
     }
 
     private static void sumarPuntos(HttpServletRequest req, Connection con, String top, int puntos) throws SQLException {
-        PreparedStatement ps = con.prepareStatement("UPDATE rankingVersion SET puntos = puntos + ? WHERE nombre_usuario = ?");
+        String campo = (req.getParameter("IRL") != null && req.getParameter("IRL").equals("on"))
+                ? "puntosIRL" : "puntos";
+        PreparedStatement ps = con.prepareStatement("UPDATE ranking SET " + campo + " = " + campo + " + ? WHERE nombre_usuario = ?");
         String usuario;
         if (req.getParameter(top) != null && !req.getParameter(top).isEmpty()) {
             usuario = req.getParameter(top);
@@ -191,7 +193,7 @@ public class UsuarioDAO {
             ps.executeUpdate();
         }
     }
-    public static void partePuntosIRL(HttpServletRequest req, Connection con) {
+    public static void partePuntos(HttpServletRequest req, Connection con) {
         try {
             sumarPuntos(req,con,"top1",6);
             sumarPuntos(req,con,"top2",5);

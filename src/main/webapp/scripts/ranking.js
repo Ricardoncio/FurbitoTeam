@@ -1,6 +1,7 @@
 let parametro;
-async function recuperarRanking() {
-    const response = await fetch("http://localhost:8080/FurbitoTeam/rankingIRL",{method: "GET"});
+async function recuperarRanking(IRL) {
+    const response = await fetch("http://localhost:8080/FurbitoTeam/ranking?IRL=" + IRL,
+        {method: "GET"});
     parametro = await response.json();
 }
 function mostrarRanking(responseJson) {
@@ -37,6 +38,11 @@ function mostrarRanking(responseJson) {
         }
     }
 }
-recuperarRanking().then(() => {
+
+let IRL = "false";
+if (window.location.href.includes("rankingIRL.html")) {
+    IRL = "true";
+}
+recuperarRanking(IRL).then(() => {
     mostrarRanking(parametro);
 });
