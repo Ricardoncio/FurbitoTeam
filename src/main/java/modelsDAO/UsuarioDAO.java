@@ -7,8 +7,6 @@ import util.Conector;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.stream;
@@ -110,6 +108,41 @@ public class UsuarioDAO {
         return coleccion.stream().sorted().toList();
     }
 
+    public static List<Carta> recuperarColeccionFiltrada(int idUsuario) {
+        List<Carta> coleccion = new ArrayList<>();
+        Connection con = null;
+
+        try {
+            con = new Conector().getMYSQLConnection();
+            Statement statement = con.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM pooldecartas AS p INNER JOIN modelosCartas AS m on p.id_modelo = m.id WHERE p.id_usuario = " + idUsuario);
+            while (resultSet.next()) {
+                Carta carta = new Carta();
+                carta.setId(resultSet.getInt("p.id_unico"));
+                carta.setImageLink(resultSet.getString("m.imageLink"));
+                carta.setTier(resultSet.getInt("m.tier"));
+                carta.setMedia(resultSet.getInt("m.media"));
+                if (coleccion.stream().noneMatch(c -> c.getImageLink().equals(carta.getImageLink()))) {
+                    coleccion.add(carta);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(System.out);
+                }
+            }
+        }
+
+        return coleccion.stream().sorted().toList();
+    }
+
     public static void sumarTiradas(int cantidad, List<Integer> ids, Connection con) {
         StringBuilder update = new StringBuilder("UPDATE usuarios SET tiradas = tiradas + " + cantidad + " WHERE ");
         for (int i = 0; i < ids.size(); i++) {
@@ -158,7 +191,7 @@ public class UsuarioDAO {
             ps.executeUpdate();
         }
     }
-    public static void partePuntos(HttpServletRequest req, Connection con) {
+    public static void partePuntosIRL(HttpServletRequest req, Connection con) {
         try {
             sumarPuntos(req,con,"top1",6);
             sumarPuntos(req,con,"top2",5);

@@ -16,7 +16,7 @@ public class RankingDAO {
 
         try {
             con = new Conector().getMYSQLConnection();
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM rankingversion ORDER BY puntos DESC");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM rankingIRL ORDER BY puntos DESC");
             ResultSet rs = ps.executeQuery();
             int contador = 0;
             while (rs.next()) {
@@ -47,12 +47,12 @@ public class RankingDAO {
         return ranking;
     }
 
-    public static void resetRanking() {
+    public static void resetRankingIRL() {
         Connection con = null;
 
         try {
             con = new Conector().getMYSQLConnection();
-            PreparedStatement ps = con.prepareStatement("UPDATE rankingVersion SET puntos = 0 WHERE 1 = 1;");
+            PreparedStatement ps = con.prepareStatement("UPDATE rankingIRL SET puntos = 0 WHERE 1 = 1;");
             ps.executeUpdate();
 
         } catch (SQLException e) {

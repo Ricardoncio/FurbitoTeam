@@ -1,6 +1,6 @@
 let parametro;
 async function recuperarRanking() {
-    const response = await fetch("http://localhost:8080/FurbitoTeam/ranking",{method: "GET"});
+    const response = await fetch("http://localhost:8080/FurbitoTeam/rankingIRL",{method: "GET"});
     parametro = await response.json();
 }
 function mostrarRanking(responseJson) {

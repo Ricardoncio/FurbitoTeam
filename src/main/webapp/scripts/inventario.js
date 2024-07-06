@@ -2,7 +2,7 @@ let cardId=null;
 
 async function mostrarInventario(){
     const user = JSON.parse(sessionStorage.getItem("user"));
-    const response= await fetch("http://localhost:8080/FurbitoTeam/coleccion?idUser="+user.id,{method: "GET"});
+    const response= await fetch("http://localhost:8080/FurbitoTeam/coleccion?idUser="+user.id+"&filtro=on",{method: "GET"});
     const inventario = await response.json();
     const equipo = await obtenerPlantilla();
     crearCartas(inventario,equipo);

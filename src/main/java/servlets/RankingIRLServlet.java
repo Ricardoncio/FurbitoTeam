@@ -12,8 +12,8 @@ import modelsDAO.RankingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "RankingServlet", urlPatterns = "/ranking")
-public class RankingServlet extends HttpServlet {
+@WebServlet(name = "RankingIRLServlet", urlPatterns = "/rankingIRL")
+public class RankingIRLServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

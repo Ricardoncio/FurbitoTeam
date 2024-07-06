@@ -19,7 +19,12 @@ public class ColeccionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idUsuario = Integer.parseInt(req.getParameter("idUser"));
-        List<Carta> coleccion = UsuarioDAO.recuperarColeccion(idUsuario);
+        List<Carta> coleccion;
+        if (req.getParameter("filtro").equals("on")) {
+            coleccion = UsuarioDAO.recuperarColeccionFiltrada(idUsuario);
+        } else {
+            coleccion = UsuarioDAO.recuperarColeccion(idUsuario);
+        }
 
         String respuesta = new Gson().toJson(coleccion);
         resp.setContentType("application/json");

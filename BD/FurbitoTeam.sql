@@ -73,7 +73,7 @@ create table if not exists rankingVersion(
 );
 alter table rankingVersion add constraint fk_nombre_usuario foreign key (nombre_usuario) references usuarios(nombre_usuario);
 
-insert into rankingVersion (nombre_usuario) values 
+insert into rankingIRL (nombre_usuario) values 
 ("Byronhate"),
 ("Danetibm"),
 ("Talleres"),
