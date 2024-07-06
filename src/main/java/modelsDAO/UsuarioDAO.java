@@ -7,7 +7,11 @@ import util.Conector;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import static java.util.Arrays.stream;
 
 public class UsuarioDAO {
 
@@ -86,6 +90,8 @@ public class UsuarioDAO {
                 Carta carta = new Carta();
                 carta.setId(resultSet.getInt("p.id_unico"));
                 carta.setImageLink(resultSet.getString("m.imageLink"));
+                carta.setTier(resultSet.getInt("m.tier"));
+                carta.setMedia(resultSet.getInt("m.media"));
                 coleccion.add(carta);
             }
 
@@ -101,7 +107,7 @@ public class UsuarioDAO {
             }
         }
 
-        return coleccion;
+        return coleccion.stream().sorted().toList();
     }
 
     public static void sumarTiradas(int cantidad, List<Integer> ids, Connection con) {

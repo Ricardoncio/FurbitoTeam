@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 
-public class Carta {
+public class Carta implements Comparable{
 
     private Integer id;
     private Integer id_modelo;
@@ -42,7 +42,24 @@ public class Carta {
 
     public void calcularMedia() {
         int totalPuntos = pac + sho + pas + dri + def + phy;
-        int media = Math.round((float) totalPuntos / 6);
-        this.media = media;
+        media = Math.round((float) totalPuntos / 6);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        int resultado = 0;
+
+        if (o instanceof Carta) {
+            if (this.tier < ((Carta) o).tier)
+                resultado = 1;
+            else if (this.tier > ((Carta) o).tier)
+                resultado = -1;
+            else if (this.media > ((Carta) o).media)
+                resultado = -1;
+            else if (this.media < ((Carta) o).media)
+                resultado = 1;
+        }
+
+        return resultado;
     }
 }
