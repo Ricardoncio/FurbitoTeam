@@ -4,7 +4,7 @@ create database if not exists FurbitoTeam;
 use FurbitoTeam;
 
 create table if not exists modelosCartas(
-	id int auto_increment not null primary key,
+id int auto_increment not null primary key,
     imageLink longtext not null,
     tier int not null,
     media int not null,
@@ -27,14 +27,14 @@ insert into modelosCartas (imageLink, tier, media, pac, sho, pas, dri, def, phy)
 
 
 create table if not exists usuarios(
-	id int auto_increment not null primary key,
+id int auto_increment not null primary key,
     nombre_usuario varchar(30) not null unique,
     pass varchar(30) not null default "1234",
     tiradas int not null default 100
 );
 
 create table if not exists poolDeCartas(
-	id_unico int auto_increment not null primary key,
+id_unico int auto_increment not null primary key,
     id_modelo int not null,
     id_usuario int not null
 );
@@ -51,7 +51,7 @@ insert into usuarios (nombre_usuario) values
 ("Elyayo");
 
 create table if not exists equipo(
-	id_usuario int not null,
+id_usuario int not null,
     id_carta int,
     pos varchar(5) not null
 );
@@ -67,11 +67,12 @@ insert into equipo values
 (5,null,"por"),(5,null,"defd"),(5,null,"defi"),(5,null,"deld"),(5,null,"deli"),
 (6,null,"por"),(6,null,"defd"),(6,null,"defi"),(6,null,"deld"),(6,null,"deli");
 
-create table if not exists rankingIRL(
+create table if not exists ranking(
     nombre_usuario varchar(30) not null,
-    puntos int not null default 0
+    puntos int not null default 0,
+    puntosIRL int not null default 0
 );
-alter table rankingIRL add constraint fk_nombre_usuario foreign key (nombre_usuario) references usuarios(nombre_usuario);
+alter table ranking add constraint fk_nombre_usuario foreign key (nombre_usuario) references usuarios(nombre_usuario);
 
 insert into ranking (nombre_usuario) values 
 ("Byronhate"),
@@ -80,7 +81,6 @@ insert into ranking (nombre_usuario) values
 ("Pukaso"),
 ("Pricelol"),
 ("Elyayo");
-
 
 /*
 select * from usuarios;

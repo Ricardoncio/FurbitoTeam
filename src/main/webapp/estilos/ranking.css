@@ -32,3 +32,11 @@ h1 {
 button {
     margin-top: 30px;
 }
+@media screen and (min-width: 100px) and (max-width: 1000px) {
+    body {
+        font-size: 25px;
+    }
+    #divContenedor {
+        width: 60vw;
+    }
+}

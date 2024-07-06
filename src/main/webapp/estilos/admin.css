@@ -18,9 +18,7 @@ h1 {
 }
 #divContenedor {
     width: 30vw;
-    min-width: 355px;
     height: 60vh;
-    max-height: 60vh;
     background-color: rgba(43,60,41,0.9);
     border-radius: 15px;
     padding: 30px;
@@ -109,6 +107,22 @@ input {
     to {bottom: 0; opacity: 0;}
 }
 
+@media screen and (min-width: 100px) and (max-width: 1000px) {
+    body {
+        font-size: 25px;
+    }
+    .opcionTop {
+        width: 250px;
+    }
+    .divCarta {
+        width: 400px;
+    }
+    #divContenedor {
+        width: 60vw;
+        height: 80vh;
+    }
+}
+
 /* ESTA MEDIA QUERY ESTA HECHA SOBRE MI PORTATIL DE 14" */
 @media screen and (min-width: 1000px) and (max-width: 1500px) {
     h1 {
@@ -120,7 +134,4 @@ input {
     form {
         gap: 20px;
     }
-}
-@media screen and (min-width: 500px) and (max-width: 1000px) {
-    /* POR COMPLETAR */
 }
