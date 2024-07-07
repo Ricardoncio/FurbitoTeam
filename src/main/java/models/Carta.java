@@ -13,6 +13,7 @@ public class Carta implements Comparable{
     private Integer id;
     private Integer id_modelo;
     private String imageLink;
+    private String estilo;
     // 1 -> bronce; 2 -> plata; 3 -> oro; 4 -> JV; 5 -> especial;
     private int tier;
     private int media;
@@ -29,6 +30,7 @@ public class Carta implements Comparable{
                 "id=" + id +
                 ", id_modelo=" + id_modelo +
                 ", imageLink='" + imageLink + '\'' +
+                ", estilo='" + estilo + '\'' +
                 ", tier=" + tier +
                 ", media=" + media +
                 ", pac=" + pac +

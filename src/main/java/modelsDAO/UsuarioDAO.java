@@ -89,6 +89,7 @@ public class UsuarioDAO {
                 carta.setId(resultSet.getInt("p.id_unico"));
                 carta.setImageLink(resultSet.getString("m.imageLink"));
                 carta.setTier(resultSet.getInt("m.tier"));
+                carta.setEstilo(resultSet.getString("m.estilo"));
                 carta.setMedia(resultSet.getInt("m.media"));
                 coleccion.add(carta);
             }
@@ -109,38 +110,14 @@ public class UsuarioDAO {
     }
 
     public static List<Carta> recuperarColeccionFiltrada(int idUsuario) {
-        List<Carta> coleccion = new ArrayList<>();
-        Connection con = null;
-
-        try {
-            con = new Conector().getMYSQLConnection();
-            Statement statement = con.createStatement();
-
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM pooldecartas AS p INNER JOIN modelosCartas AS m on p.id_modelo = m.id WHERE p.id_usuario = " + idUsuario);
-            while (resultSet.next()) {
-                Carta carta = new Carta();
-                carta.setId(resultSet.getInt("p.id_unico"));
-                carta.setImageLink(resultSet.getString("m.imageLink"));
-                carta.setTier(resultSet.getInt("m.tier"));
-                carta.setMedia(resultSet.getInt("m.media"));
-                if (coleccion.stream().noneMatch(c -> c.getImageLink().equals(carta.getImageLink()))) {
-                    coleccion.add(carta);
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-        } finally {
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    e.printStackTrace(System.out);
-                }
+        List<Carta> coleccion = recuperarColeccion(idUsuario);
+        List<Carta> coleccionFiltrada = new ArrayList<>();
+        for (Carta c : coleccion) {
+            if (coleccionFiltrada.stream().noneMatch(carta -> carta.getImageLink().matches(c.getImageLink()))) {
+                coleccionFiltrada.add(c);
             }
         }
-
-        return coleccion.stream().sorted().toList();
+        return coleccionFiltrada.stream().sorted().toList();
     }
 
     public static void sumarTiradas(int cantidad, List<Integer> ids, Connection con) {
